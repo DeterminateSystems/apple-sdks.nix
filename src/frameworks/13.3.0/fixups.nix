@@ -19,6 +19,7 @@
       ApplicationServices = { inherit cups; };
       AudioToolbox = { inherit AudioToolboxCore; };
       CoreFoundation = { inherit libobjc; };
+      CoreMIDIServer = { inherit CoreMIDI; };
       Foundation = { inherit libobjc; };
       QuartzCore = { inherit CoreImage libobjc; };
       Security = { inherit (libs) libDER; };
