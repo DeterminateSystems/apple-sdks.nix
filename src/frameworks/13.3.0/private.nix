@@ -15,6 +15,9 @@
   DebugSymbols = { }; # llvmPackages_8.lldb
   DisplayServices = { libobjc = objc4; }; # macchina
   MultitouchSupport = { }; # chuck
+  PassKitCore = { }; # PassKit
+  PassKitMacHelper = { }; # PassKit
+  PassKitMacHelperTemp = { }; # PassKit
   SignpostMetrics = { }; # MetricKit
   SkyLight = { }; # spacebar
   UIFoundation = { };

@@ -26,6 +26,7 @@
       Foundation = { inherit libobjc; };
       IOBluetooth = { inherit CoreBluetooth; };
       MetricKit = { inherit SignpostMetrics; };
+      PassKit = { inherit PassKitCore PassKitMacHelper PassKitMacHelperTemp; };
       QuartzCore = { inherit CoreImage libobjc; };
       Security = { inherit (libs) libDER; };
     };

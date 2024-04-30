@@ -23,6 +23,7 @@
       CoreMIDIServer = { inherit CoreMIDI; };
       DiscRecording = { inherit libobjc; };
       Foundation = { inherit libobjc; };
+      PassKit = { inherit PassKitCore PassKitMacHelper; };
       QuartzCore = { inherit CoreImage libobjc; };
       Security = { inherit (libs) libDER; };
     };
