@@ -2,14 +2,14 @@
 # frameworks here are only the necessary ones used by public frameworks.
 # To find these, @connorbaker built packages depending on public frameworks
 # and added the missing frameworks to this list.
-{}:
+{ objc4 }:
 # NOTE: Must be a function so we can use callPackage in `default.nix`
 {
   AudioToolboxCore = { }; # AudioToolbox
   CollectionViewCore = { }; # AppKit
   CoreSymbolication = { }; # hepmc3
   DebugSymbols = { }; # llvmPackages_8.lldb
-  DisplayServices = { }; # macchina
+  DisplayServices = { libobjc = objc4; }; # macchina
   MultitouchSupport = { }; # chuck
   SkyLight = { }; # spacebar
   UIFoundation = { };
