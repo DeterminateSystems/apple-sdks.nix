@@ -2,13 +2,15 @@
 # frameworks here are only the necessary ones used by public frameworks.
 # To find these, @connorbaker built packages depending on public frameworks
 # and added the missing frameworks to this list.
-{ objc4 }:
+{ frameworks, objc4 }:
 # NOTE: Must be a function so we can use callPackage in `default.nix`
 {
+  AddressBookCore = { inherit (frameworks) ContactsPersistence; }; # AddressBook
   AudioToolboxCore = { }; # AudioToolbox
   AVFCapture = { }; # BackgroundAssets
   AVFCore = { }; # BackgroundAssets
   CollectionViewCore = { }; # AppKit
+  ContactsPersistence = { }; # AddressBook
   CoreSymbolication = { }; # hepmc3
   DebugSymbols = { }; # llvmPackages_8.lldb
   DisplayServices = { libobjc = objc4; }; # macchina

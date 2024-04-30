@@ -15,6 +15,7 @@
       libobjc = objc4;
     in
     with frameworks; {
+      AddressBook = { inherit AddressBookCore ContactsPersistence; };
       AppKit = { inherit CollectionViewCore UIFoundation; };
       ApplicationServices = { inherit cups; };
       AudioToolbox = { inherit AudioToolboxCore; };
