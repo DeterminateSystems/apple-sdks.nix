@@ -25,6 +25,7 @@
       CoreMIDIServer = { inherit CoreMIDI; };
       DiscRecording = { inherit libobjc; };
       Foundation = { inherit libobjc; };
+      IOBluetooth = { inherit CoreBluetooth; };
       QuartzCore = { inherit CoreImage libobjc; };
       Security = { inherit (libs) libDER; };
     };
