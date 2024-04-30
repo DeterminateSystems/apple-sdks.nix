@@ -19,6 +19,7 @@
       AppKit = { inherit CollectionViewCore UIFoundation; };
       ApplicationServices = { inherit cups; };
       AudioToolbox = { inherit AudioToolboxCore; };
+      BackgroundAssets = { inherit CloudKit; };
       CoreFoundation = { inherit libobjc; };
       CoreMIDIServer = { inherit CoreMIDI; };
       DiscRecording = { inherit libobjc; };

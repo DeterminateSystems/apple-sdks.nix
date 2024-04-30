@@ -6,6 +6,8 @@
 # NOTE: Must be a function so we can use callPackage in `default.nix`
 {
   AudioToolboxCore = { }; # AudioToolbox
+  AVFCapture = { }; # BackgroundAssets
+  AVFCore = { }; # BackgroundAssets
   CollectionViewCore = { }; # AppKit
   CoreSymbolication = { }; # hepmc3
   DebugSymbols = { }; # llvmPackages_8.lldb
