@@ -45,3 +45,44 @@ The `addToFrameworks` attribute is an attribute set where each key is the name o
 The `removeFromFrameworks` attribute is an attribute set where each key is the name of a framework and each value is an attribute set of dependencies to remove from the named framework.
 
 The `overrideFrameworks` attribute is function which accepts an attribute set of framework derivations and returns an attribute set of framework derivations. This is useful for doing things like modifying the `buildPhase` or `installPhase` of a framework.
+
+# Notes
+
+If you see an error like this:
+
+```
+       > Running phase: installPhase
+       > Fixing re-exports in /nix/store/nzb9d81qjsvah2spa540pb1731qi07q7-apple-framework-CoreMIDIServer-13.1.0/Library/Frameworks/CoreMIDIServer.framework/Versions/A/CoreMIDIServer.tbd
+       > Errors occurred during rewrite of /nix/store/nzb9d81qjsvah2spa540pb1731qi07q7-apple-framework-CoreMIDIServer-13.1.0/Library/Frameworks/CoreMIDIServer.framework/Versions/A/CoreMIDIServer.tbd
+       > Rewrite config:
+       > Exact mappings:
+       > Prefix mappings:
+       >   - /usr/lib/swift/ -> /nix/store/nzb9d81qjsvah2spa540pb1731qi07q7-apple-framework-CoreMIDIServer-13.1.0/lib/swift/
+       >   - /System/Library/Frameworks/CoreMIDIServer.framework/ -> /nix/store/nzb9d81qjsvah2spa540pb1731qi07q7-apple-framework-CoreMIDIServer-13.1.0/Library/Frameworks/CoreMIDIServer.framework/
+       > Required prefix: /nix/store
+       > Check existence of resulting paths: yes
+       >
+       > The following paths did not match any rewrite rule
+       >   /System/Library/Frameworks/CoreMIDI.framework/Versions/A/CoreMIDI
+       > libc++abi: terminating due to uncaught exception of type rewrite_errors: Rewriting failed
+```
+
+then you need to add a fixup. Note especially:
+
+```
+       > Errors occurred during rewrite of /nix/store/nzb9d81qjsvah2spa540pb1731qi07q7-apple-framework-CoreMIDIServer-13.1.0/Library/Frameworks/CoreMIDIServer.framework/Versions/A/CoreMIDIServer.tbd
+```
+
+and
+
+```
+       > The following paths did not match any rewrite rule
+       >   /System/Library/Frameworks/CoreMIDI.framework/Versions/A/CoreMIDI
+```
+
+like this:
+
+```nix
+addToFrameworks =  # ...
+  CoreMIDIServer = { inherit CoreMIDI; };
+```
