@@ -27,7 +27,7 @@
   # Used to remove dependencies which are picked up by gen-frameworks.py -- used mainly to break
   # cyclic dependencies.
   removeFromFrameworks = with frameworks; {
-    ServiceManagement = { inherit Foundation; };
+    ServiceManagement = { Foundation = true; };
   };
 
   # Overrides for framework derivations.
@@ -35,10 +35,6 @@
     CoreFoundation = lib.overrideDerivation super.CoreFoundation (drv: {
       setupHook = ../scripts/forceLinkCoreFoundationFramework.sh;
     });
-
-    # This framework doesn't exist in newer SDKs (somewhere around 10.13), but
-    # there are references to it in nixpkgs.
-    QuickTime = throw "QuickTime framework not available";
 
     # Seems to be appropriate given https://developer.apple.com/forums/thread/666686
     JavaVM = super.JavaNativeFoundation;
