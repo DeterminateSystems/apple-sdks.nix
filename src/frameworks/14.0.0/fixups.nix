@@ -25,6 +25,7 @@
       DiscRecording = { inherit libobjc; };
       Foundation = { inherit libobjc; };
       IOBluetooth = { inherit CoreBluetooth; };
+      MetricKit = { inherit SignpostMetrics; };
       QuartzCore = { inherit CoreImage libobjc; };
       Security = { inherit (libs) libDER; };
     };

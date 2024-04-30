@@ -13,6 +13,7 @@
   DebugSymbols = { }; # llvmPackages_8.lldb
   DisplayServices = { libobjc = objc4; }; # macchina
   MultitouchSupport = { }; # chuck
+  SignpostMetrics = { }; # MetricKit
   SkyLight = { }; # spacebar
   UIFoundation = { };
 }
