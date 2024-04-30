@@ -1,3 +1,5 @@
+_Note: the vast majority of this repo is copied directly out of https://github.com/NixOS/nixpkgs/pull/229210._
+
 # apple-sdks
 
 This document describes the different components which go into producing the Apple SDKs (versions later than 11.0) in Nixpkgs.
