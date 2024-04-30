@@ -20,11 +20,13 @@
       AppKit = { inherit CollectionViewCore UIFoundation; };
       ApplicationServices = { inherit cups; };
       AudioToolbox = { inherit AudioToolboxCore; };
+      AVFoundation = { inherit AVFCapture AVFCore; };
       BackgroundAssets = { inherit CloudKit; };
       CoreFoundation = { inherit libobjc; };
       CoreMIDIServer = { inherit CoreMIDI; };
       DiscRecording = { inherit libobjc; };
       Foundation = { inherit libobjc; };
+      GameKit = { inherit ReplayKit GameCenterFoundation GameCenterUI GameCenterUICore; };
       IOBluetooth = { inherit CoreBluetooth; };
       MetricKit = { inherit SignpostMetrics; };
       PassKit = { inherit PassKitCore PassKitMacHelperTemp; };

@@ -26,6 +26,7 @@
       CoreMIDIServer = { inherit CoreMIDI; };
       DiscRecording = { inherit libobjc; };
       Foundation = { inherit libobjc; };
+      GameKit = { inherit ReplayKit GameCenterFoundation GameCenterUI GameCenterUICore; };
       IOBluetooth = { inherit CoreBluetooth; };
       MetricKit = { inherit SignpostMetrics; };
       PassKit = { inherit PassKitCore PassKitMacHelperTemp; };

@@ -20,4 +20,7 @@
   SignpostMetrics = { }; # MetricKit
   SkyLight = { }; # spacebar
   UIFoundation = { };
+  GameCenterFoundation = {}; # GameKit
+  GameCenterUI = {}; # GameKit
+  GameCenterUICore = {}; # GameKit
 }
