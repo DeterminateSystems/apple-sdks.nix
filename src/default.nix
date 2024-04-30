@@ -13,6 +13,8 @@ let
     "12.3.0"
     "13.1.0"
     "13.3.0"
+    "14.0.0"
+    "14.4.0"
   ];
   appleSDKs = lib.pipe versions [
     (builtins.map toAttrset)

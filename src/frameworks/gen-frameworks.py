@@ -83,7 +83,7 @@ def scan_sdk(sdk_dir: Path) -> str:
         #
         # If there were a similar Clang invocation for scanning, we could fix
         # the above todos, but that doesn't appear to exist.
-        logger.info(f"Scanning {framework}")
+        logger.info(f"Scanning {framework} in {sdk_dir.as_posix()}")
         result = subprocess.run(
             [
                 "swiftc",
@@ -115,25 +115,30 @@ def scan_sdk(sdk_dir: Path) -> str:
 
         # Parse JSON output.
         if len(result.stdout) != 0:
-            data = json.loads(result.stdout)
+            try:
+                data = json.loads(result.stdout.decode("utf-8").replace('""FoundationPreview""', '"FoundationPreview"'))
 
-            # Entries in the modules list come in pairs. The first is an
-            # identifier (`{ swift: "foobar" }` or `{ clang: "foobar" }`), and
-            # the second metadata for that module. Here we look for the pair
-            # that matches the framework we're scanning (and ignore the rest).
-            modules = data["modules"]
-            for i in range(0, len(modules), 2):
-                ident, meta = modules[i : i + 2]
 
-                # NOTE: We may match twice, for a Swift module _and_ for a
-                # Clang module. So matching here doesn't break from the loop,
-                # and deps is appended to.
-                if name_from_ident(ident) == framework:
-                    dep_idents = meta["directDependencies"]
-                    deps += [name_from_ident(ident) for ident in dep_idents]
-                    # List unfiltered deps in progress output.
-                    logger.info(f"{ident} -> {dep_idents}")
+                # Entries in the modules list come in pairs. The first is an
+                # identifier (`{ swift: "foobar" }` or `{ clang: "foobar" }`), and
+                # the second metadata for that module. Here we look for the pair
+                # that matches the framework we're scanning (and ignore the rest).
+                modules = data["modules"]
+                for i in range(0, len(modules), 2):
+                    ident, meta = modules[i : i + 2]
 
+                    # NOTE: We may match twice, for a Swift module _and_ for a
+                    # Clang module. So matching here doesn't break from the loop,
+                    # and deps is appended to.
+                    if name_from_ident(ident) == framework:
+                        dep_idents = meta["directDependencies"]
+                        deps += [name_from_ident(ident) for ident in dep_idents]
+                        # List unfiltered deps in progress output.
+                        logger.info(f"{ident} -> {dep_idents}")
+            except json.decoder.JSONDecodeError as e:
+                with open('failed.json', 'wb') as w:
+                    w.write(result.stdout)
+                raise e
         # Filter out modules that are not separate derivations.
         # Also filter out duplicates (when a Swift overlay imports the Clang module)
         allowed = frameworks + ALLOWED_LIBS
