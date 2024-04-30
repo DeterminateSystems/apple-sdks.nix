@@ -18,7 +18,6 @@ jobs:
       - run: nix flake check
 
   flakehub-publish:
-    needs: cache
     runs-on: "ubuntu-latest"
     permissions:
       id-token: "write"
@@ -30,4 +29,4 @@ jobs:
         with:
           name: "DeterminateSystems/apple-sdks.nix"
           rolling: true
-          visibility: "private"
+          visibility: "public"
